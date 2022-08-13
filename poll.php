@@ -101,7 +101,17 @@
                 $partyName = $conn->query("SELECT name from `online_voting`.`party` WHERE id = " . $row['id']);
                 if ($partyName->num_rows > 0) {
                     while ($row2 = $partyName->fetch_assoc()) {
-                        echo '<h1>' . $row2['name'] . '</h1>';
+                        echo $row2['name'];
+                        $pvQ = "SELECT count(*) as total FROM `online_voting`.`votes` WHERE election_id = " . $_GET['election'] .' AND party_id = '.$row['id'];
+                        $partyVotes =  mysqli_fetch_assoc(mysqli_query($conn, $pvQ))['total'];
+                        $perc = (intval($partyVotes) * 100) / intval($totalVotes['total']);
+
+                        $progressBar = <<<EOD
+                        <div class="progress mb-4">
+                            <div class="progress-bar" role="progressbar" style="width: $perc%" aria-valuenow="$perc" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        EOD;
+                        echo $progressBar;
                     }
                 }
             }
