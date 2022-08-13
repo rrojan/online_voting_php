@@ -97,11 +97,15 @@
         echo '<hr class="container">';
         $result = $conn->query("SELECT id from `online_voting`.`party`");
         if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                echo $row['id'];
-                echo '<br>';
-              }
-          }
+            while ($row = $result->fetch_assoc()) {
+                $partyName = $conn->query("SELECT name from `online_voting`.`party` WHERE id = " . $row['id']);
+                if ($partyName->num_rows > 0) {
+                    while ($row2 = $partyName->fetch_assoc()) {
+                        echo '<h1>' . $row2['name'] . '</h1>';
+                    }
+                }
+            }
+        }
         ?>
     </div>
 
