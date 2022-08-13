@@ -36,15 +36,3 @@ VALUES (
         NULL,
         'Bagmati Regional Election 2022'
     );
-INSERT INTO `votes` (`id`, `party_id`, `election_id`, `user_id`)
-VALUES (NULL, 1, 1, 11);
-INSERT INTO `votes` (`id`, `party_id`, `election_id`, `user_id`)
-VALUES (NULL, 1, 1, 12);
-INSERT INTO `votes` (`id`, `party_id`, `election_id`, `user_id`)
-VALUES (NULL, 2, 1, 13);
-INSERT INTO `votes` (`id`, `party_id`, `election_id`, `user_id`)
-VALUES (NULL, 1, 2, 11);
-INSERT INTO `votes` (`id`, `party_id`, `election_id`, `user_id`)
-VALUES (NULL, 1, 2, 12);
-INSERT INTO `votes` (`id`, `party_id`, `election_id`, `user_id`)
-VALUES (NULL, 2, 2, 13);

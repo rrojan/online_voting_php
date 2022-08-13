@@ -14,7 +14,7 @@ function handlePost()
     $cit = $_POST['cit'];
     $password = $_POST['password'];
 
-    $query = "INSERT INTO `trip`.`user` (`id`, `cit`, `password`) VALUES (NULL, '$cit', '$password');";
+    $query = "INSERT INTO `online_voting`.`user` (`id`, `cit`, `password`) VALUES (NULL, '$cit', '$password');";
 
     if (!$conn) {
         die('Error connecting to database: ' . mysqli_connect_error());

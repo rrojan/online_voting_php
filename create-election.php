@@ -15,9 +15,8 @@ function handlePost() {
     $conn = mysqli_connect($server, $username, $password);
 
     $name = $_POST['name'];
-    $logoUrl = $_POST['logo'];
 
-    $query = "INSERT INTO `online_voting`.`party` (`id`, `name`, `logo_url`) VALUES (NULL, '$name', '$logoUrl');";
+    $query = "INSERT INTO `online_voting`.`election` (`id`, `name`) VALUES (NULL, '$name');";
     if (!$conn) {
         die('Error connecting to database: ' . mysqli_connect_error());
     }
@@ -32,13 +31,12 @@ function handlePost() {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Party</title>
+    <title>Create New Election</title>
 </head>
 
 <body>
-    <form action="create-party.php" method="post">
-        <input type="text" name="name" placeholder="Party Name">
-        <input type="text" min=8 max=32 name="logo" placeholder="Logo URL">
+    <form action="create-election.php" method="post">
+        <input type="text" name="name" placeholder="Election Name">
         <button type="submit">Submit</button>
     </form>
 
@@ -46,9 +44,9 @@ function handlePost() {
     if (isset($_POST['name'])) {
         $isCreated = handlePost();
         if ($isCreated) {
-            echo '<h3>Successfully created new party: ' . $_POST['name'];
+            echo '<h3>Successfully created new election: ' . $_POST['name'];
         } else {
-            echo 'Error: Please check details';
+            echo 'Error: Please check your details';
         }
     }
     ?>

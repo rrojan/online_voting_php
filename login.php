@@ -4,10 +4,11 @@ if (isset($_COOKIE['isLoggedIn'])) {
     $isLoggedIn = true;
 }
 
-function loginUser($cit)
+function loginUser($cit, $userId)
 {
     setcookie('isLoggedIn', true);
     setcookie('user', $cit);
+    setcookie('userId', $userId);
 }
 
 function handlePost()
@@ -20,14 +21,19 @@ function handlePost()
     $cit = $_POST['cit'];
     $password = $_POST['password'];
 
-    $query = "SELECT * FROM `voting_system`.`user` WHERE cit = '$cit' AND password = '$password'";
+    $query = "SELECT * FROM `online_voting`.`user` WHERE cit = '$cit' AND password = '$password'";
     if (!$conn) {
+        echo 'error connecting to db';
         die('Error connecting to database: ' . mysqli_connect_error());
     }
     if ($result = mysqli_query($conn, $query)) {
-        if(mysqli_num_rows($result) > 0){
-            return true;
+        if($num_rows = mysqli_num_rows($result) > 0){
+            for ($i = 0; $i < $num_rows; $i++) {
+                $row = mysqli_fetch_assoc($result);
+                return $row['id'];
+            }
         } else {
+            echo 'Matching user not found';
             return false;
         }
     } else {
@@ -60,11 +66,11 @@ function handlePost()
         echo $form;
     }
     if (isset($_POST['cit'])) {
-        $isSuccessfulLogin = handlePost();
-        if ($isSuccessfulLogin) {
-            loginUser($_POST['cit']);
+        $userId = handlePost();
+        if ($userId) {
+            loginUser($_POST['cit'], $userId);
             // Redirect to index
-            header("Location: http://localhost/achiwin/index.php");
+            header("Location: http://localhost/online_voting_php/index.php");
             exit;
         } else {
             echo 'Incorrect username or password';

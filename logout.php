@@ -14,6 +14,5 @@ function logoutUser()
 
 logoutUser();
 // Redirect back to index page
-header("Location: http://localhost/achiwin/index.php");
-exit;
+echo 'You have successfully logged out';
 ?>

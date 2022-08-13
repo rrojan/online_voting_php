@@ -1,4 +1,10 @@
 <?php
+
+if (isset($_COOKIE['user']) and $_COOKIE['user'] == 'admin') {
+    header("Location: http://localhost/online_voting_php/admin.php");
+    exit;
+}
+
 $sent = false;
 if (isset($_POST['name'])) {
     $server = 'localhost';

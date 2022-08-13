@@ -6,9 +6,9 @@ CREATE TABLE `user` (
 ) ENGINE = InnoDB AUTO_INCREMENT = 10 DEFAULT CHARSET = utf8mb4;
 CREATE TABLE `party` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
-    `name` varchar(32) NOT NULL,
+    `name` varchar(64) NOT NULL,
     `previous_wincount` int(11) NOT NULL DEFAULT 0,
-    `logo_url` varchar(255) DEFAULT NULL,
+    `logo_url` varchar(447) DEFAULT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 CREATE TABLE `election` (
@@ -26,3 +26,9 @@ CREATE TABLE `votes` (
     FOREIGN KEY (election_id) REFERENCES election(id),
     FOREIGN KEY (user_id) REFERENCES user(id)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+CREATE TABLE `published_elections` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `election_id` int(11) NOT NULL,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (election_id) REFERENCES election(id)
+);
