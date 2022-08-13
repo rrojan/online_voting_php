@@ -2,9 +2,10 @@
 $isLoggedIn = false;
 if (isset($_COOKIE['isLoggedIn'])) {
     $isLoggedIn = $_COOKIE['isLoggedIn'];
-    $currentUser = $_COOKIE['user']
+    $currentUser = $_COOKIE['user'];
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,6 +22,7 @@ if (isset($_COOKIE['isLoggedIn'])) {
         <input type="text" min=8 max=32 name="logo" placeholder="Logo URL">
         <button type="submit">Submit</button>
     </form>
+
     <?php
     $form = <<<EOD
     
