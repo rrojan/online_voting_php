@@ -13,7 +13,7 @@ function handlePost()
     $queryPrevVote = "SELECT count(*) as total from `online_voting`.`votes` WHERE election_id='$election' AND user_id='$userId'";
     $userHasPrevVote = mysqli_query($conn, $queryPrevVote);
     $data=mysqli_fetch_assoc($userHasPrevVote);
-    
+
     if (intval($data['total']) > 0) {
         return false;
     }

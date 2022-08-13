@@ -1,5 +1,5 @@
 INSERT INTO user (`id`, `cit`, `password`)
-VALUES (NULL, 'admin', 'password');
+VALUES (NULL, 'admin', 'password'); -- admin user
 INSERT INTO user (`id`, `cit`, `password`)
 VALUES (NULL, '1234', 'password');
 INSERT INTO user (`id`, `cit`, `password`)

@@ -1,29 +1,18 @@
-<?php
-function logoutUser()
-{
-    if (isset($_SERVER['HTTP_COOKIE'])) {
-        $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
-        foreach ($cookies as $cookie) {
-            $parts = explode('=', $cookie);
-            $name = trim($parts[0]);
-            setcookie($name, '', time() - 1000);
-            setcookie($name, '', time() - 1000, '/');
-        }
-    }
-}
-
-logoutUser();
-?>
-<!-- Navbar -->
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <title>Logout</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Voting System</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding-top: 10px; padding-bottom: 10px; padding-left: 12vw; padding-right: 12vw;">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php" style="font-size: 2em; margin-right: 120px;">OVS Nepal</a>
@@ -91,14 +80,29 @@ logoutUser();
         </div>
     </nav>
     <!-- navbar -->
-
     <div class="container my-5">
-        You have successfully logged out
-        <div class="my-4">
-            <a href="index.php" class="me-5">Go Home</a>
-            <a href="login.php">Login</a><br>
-
-        </div>
+        <?php
+        $server = 'localhost';
+        $username = 'root';
+        $password = '';
+        $conn = mysqli_connect($server, $username, $password);
+        $result = $conn->query("SELECT name from `online_voting`.`election` WHERE id = " . $_GET['election']);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo '<h1>' . $row['name'] . '</h1>';
+            }
+        }
+        $totalVotes =  mysqli_fetch_assoc(mysqli_query($conn, "SELECT count(*) as total FROM `online_voting`.`votes` WHERE election_id = " . $_GET['election']));
+        echo '<h2 class="alert alert-primary">Total Votes:' . $totalVotes['total'] . '</h2>';
+        echo '<hr class="container">';
+        $result = $conn->query("SELECT id from `online_voting`.`party`");
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                echo $row['id'];
+                echo '<br>';
+              }
+          }
+        ?>
     </div>
 
 </body>
