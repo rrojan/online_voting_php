@@ -1,5 +1,9 @@
 <?php
-
+$isLoggedIn = false;
+if (isset($_COOKIE['isLoggedIn'])) {
+    $isLoggedIn = $_COOKIE['isLoggedIn'];
+    $currentUser = $_COOKIE['user']
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,9 +16,9 @@
 </head>
 
 <body>
-    <form action="cr.php" method="post">
-        <input type="text" name="cit" placeholder="Citizenship number">
-        <input type="password" min=8 max=32 name="password" placeholder="Password">
+    <form action="create-party.php" method="post">
+        <input type="text" name="name" placeholder="Citizenship number">
+        <input type="text" min=8 max=32 name="logo" placeholder="Logo URL">
         <button type="submit">Submit</button>
     </form>
     <?php
