@@ -93,7 +93,7 @@
             }
         }
         $totalVotes =  mysqli_fetch_assoc(mysqli_query($conn, "SELECT count(*) as total FROM `online_voting`.`votes` WHERE election_id = " . $_GET['election']));
-        echo '<h2 class="alert alert-primary">Total Votes:' . $totalVotes['total'] . '</h2>';
+        echo '<h2 class="alert alert-primary my-5">Total Votes: ' . $totalVotes['total'] . '</h2>';
         echo '<hr class="container">';
         $result = $conn->query("SELECT id from `online_voting`.`party`");
         if ($result->num_rows > 0) {
