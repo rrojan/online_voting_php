@@ -68,23 +68,16 @@ if (isset($_COOKIE['user']) and $_COOKIE['user'] == 'admin') {
                         </ul>
                     </li>
                 </ul>
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 profile-menu">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-user"></i>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-sliders-h fa-fw"></i> Account</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog fa-fw"></i> Settings</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-fw"></i> Log Out</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                <?php
+                if (isset($__COOKIE['user'])) {
+                    echo "<a href='logout.php'>Logout</a>";
+                } else {
+                    echo "<a href='login.php'>Login</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='signup.php'>Signout</a>";
+                }
+                ?>
             </div>
         </div>
+
     </nav>
     <!-- navbar -->
     <div class="container my-5">
@@ -130,7 +123,7 @@ if (isset($_COOKIE['user']) and $_COOKIE['user'] == 'admin') {
         $num_rows = mysqli_num_rows($result);
         for ($i = 0; $i < $num_rows; $i++) {
             $row = mysqli_fetch_assoc($result);
-            echo '<h4><a href=poll.php?election='.$row['id'].'>' . $row['name'] . '</a></h4>';
+            echo '<h4><a href=poll.php?election=' . $row['id'] . '>' . $row['name'] . '</a></h4>';
             $totalVotes =  mysqli_fetch_assoc(mysqli_query($conn, "SELECT count(*) as total FROM `online_voting`.`votes` WHERE election_id = " . $row["id"]));
             echo '<h5>Total votes: ' . $totalVotes['total'];
             echo "<hr class='container'>";

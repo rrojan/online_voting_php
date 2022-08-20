@@ -67,21 +67,7 @@ if (!isset($_COOKIE['user']) || $_COOKIE['user'] != 'admin') {
                         </ul>
                     </li>
                 </ul>
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 profile-menu">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-user"></i>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-sliders-h fa-fw"></i> Account</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog fa-fw"></i> Settings</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-fw"></i> Log Out</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                <a href="logout.php">Logout</a>
             </div>
         </div>
     </nav>
@@ -95,6 +81,7 @@ if (!isset($_COOKIE['user']) || $_COOKIE['user'] != 'admin') {
         $totalVotes =  mysqli_fetch_assoc(mysqli_query($conn, "SELECT count(*) as total FROM `online_voting`.`votes`"));
         $totalPolls =  mysqli_fetch_assoc(mysqli_query($conn, "SELECT count(*) as total FROM `online_voting`.`election`"));
         $totalUsers = mysqli_fetch_assoc(mysqli_query($conn, "SELECT count(*) as total FROM `online_voting`.`user`"));
+        $totalParties = mysqli_fetch_assoc(mysqli_query($conn, "SELECT count(*) as total FROM `online_voting`.`party`"));
         $table = <<<EOD
         <table class="table">
             <thead>
@@ -103,6 +90,7 @@ if (!isset($_COOKIE['user']) || $_COOKIE['user'] != 'admin') {
                 <th scope="col">Total Votes</th>
                 <th scope="col">Running Elections</th>
                 <th scope="col">Total Users Signed Up</th>
+                <th scope="col">Total Parties</th>
             </tr>
             </thead>
             <tbody>
@@ -120,6 +108,10 @@ if (!isset($_COOKIE['user']) || $_COOKIE['user'] != 'admin') {
                     EOD .
             $totalUsers['total'] . <<<EOD
         </td>
+        <td>
+        EOD .
+            $totalParties['total'] . <<<EOD
+            </td>
                 </tr>
             </tbody>
         </table>
