@@ -7,6 +7,7 @@ if (!isset($_COOKIE['user']) || $_COOKIE['user'] != 'admin') {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,6 +16,7 @@ if (!isset($_COOKIE['user']) || $_COOKIE['user'] != 'admin') {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <title>Admin Portal</title>
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding-top: 10px; padding-bottom: 10px; padding-left: 12vw; padding-right: 12vw;">
@@ -84,9 +86,53 @@ if (!isset($_COOKIE['user']) || $_COOKIE['user'] != 'admin') {
         </div>
     </nav>
     <!-- navbar -->
-    <a href="create-election.php">Create New Election</a>
-    <br>
-    <a href="create-party.php">Add New Party</a>
-    <br>
+    <div class="container mt-5">
+        <?php
+        $server = 'localhost';
+        $username = 'root';
+        $password = '';
+        $conn = mysqli_connect($server, $username, $password);
+        $totalVotes =  mysqli_fetch_assoc(mysqli_query($conn, "SELECT count(*) as total FROM `online_voting`.`votes`"));
+        $totalPolls =  mysqli_fetch_assoc(mysqli_query($conn, "SELECT count(*) as total FROM `online_voting`.`election`"));
+        $totalUsers = mysqli_fetch_assoc(mysqli_query($conn, "SELECT count(*) as total FROM `online_voting`.`user`"));
+        $table = <<<EOD
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Total Votes</th>
+                <th scope="col">Running Elections</th>
+                <th scope="col">Total Users Signed Up</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row"> </th>
+                    <td>
+        EOD .
+            $totalVotes['total'] . <<<EOD
+                    </td>
+                    <td>
+                    EOD .
+            $totalPolls['total'] . <<<EOD
+                    </td>
+                    <td>
+                    EOD .
+            $totalUsers['total'] . <<<EOD
+        </td>
+                </tr>
+            </tbody>
+        </table>
+        EOD;
+        echo $table;
+        ?>
+    </div>
+    <div class="container my-5 d-flex flex-row justify-content-start">
+        <a href="create-election.php" class="btn btn-success px-3 py-2 me-4">Create New Poll</a>
+        <a href="create-party.php" class="btn btn-primary px-3 py-2">Add New Party</a>
+        <br>
+
+    </div>
 </body>
+
 </html>
