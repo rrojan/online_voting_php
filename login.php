@@ -103,10 +103,13 @@ function handlePost()
     <!-- navbar -->
     <?php
     $form = <<<EOD
-    <form action="login.php" method="post">
-        <input type="text" name="cit" placeholder="Citizenship number">
-        <input type="password" min=8 max=32 name="password" placeholder="Password">
-        <button type="submit">Submit</button>
+    <form action="login.php" method="post" class="container my-5">
+        <div">
+            <input type="text" name="cit" placeholder="Citizenship number" class="me-1 p-1">
+            <input type="password" min=8 max=32 name="password" placeholder="Password" class="me-1 p-1">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-success my-3 px-5">Log In</button>
     </form>
     EOD;
     if ($isLoggedIn) {
