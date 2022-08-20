@@ -11,21 +11,21 @@ VALUES (NULL, '4567', 'password');
 INSERT INTO `party` (`id`, `name`, `previous_wincount`, `logo_url`)
 VALUES (
         NULL,
-        'Menuka Samajghati Party',
+        'Kukhura Party',
         0,
         'https://picsum.photos/536/354'
     );
 INSERT INTO `party` (`id`, `name`, `previous_wincount`, `logo_url`)
 VALUES (
         NULL,
-        'Menuka Janata Party',
+        'Bakhra Party',
         0,
         'https://picsum.photos/536/354'
     );
 INSERT INTO `party` (`id`, `name`, `previous_wincount`, `logo_url`)
 VALUES (
         NULL,
-        'Menuka Majdoor Party',
+        'Gaibastu Party',
         0,
         'https://picsum.photos/536/354'
     );
