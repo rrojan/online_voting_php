@@ -1,7 +1,7 @@
 <?php
 
 if (isset($_COOKIE['user']) and $_COOKIE['user'] == 'admin') {
-    header("Location: http://localhost/online_voting_php/admin.php");
+    header("Location: http://localhost/online_voting_php/dashboard.php");
     exit;
 }
 ?>
