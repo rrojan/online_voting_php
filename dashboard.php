@@ -1,6 +1,6 @@
 <?php
 if (!isset($_COOKIE['user']) || $_COOKIE['user'] != 'admin') {
-    header("Location: http://localhost/online_voting_php/index.php");
+    header("Location: http://localhost/online_voting/index.php");
     exit;
 }
 ?>

@@ -108,7 +108,7 @@ function handlePost()
         if ($userId) {
             loginUser($_POST['cit'], $userId);
             // Redirect to index
-            header("Location: http://localhost/online_voting_php/index.php");
+            header("Location: http://localhost/online_voting/index.php");
             exit;
         } else {
             echo 'Incorrect username or password';

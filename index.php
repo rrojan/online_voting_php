@@ -1,7 +1,7 @@
 <?php
 
 if (isset($_COOKIE['user']) and $_COOKIE['user'] == 'admin') {
-    header("Location: http://localhost/online_voting_php/dashboard.php");
+    header("Location: http://localhost/online_voting/dashboard.php");
     exit;
 }
 ?>
@@ -69,10 +69,10 @@ if (isset($_COOKIE['user']) and $_COOKIE['user'] == 'admin') {
                     </li>
                 </ul>
                 <?php
-                if (isset($__COOKIE['user'])) {
+                if (isset($_COOKIE['user'])) {
                     echo "<a href='logout.php'>Logout</a>";
                 } else {
-                    echo "<a href='login.php'>Login</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='signup.php'>Signout</a>";
+                    echo "<a href='login.php'>Login</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='signup.php'>Signup</a>";
                 }
                 ?>
             </div>

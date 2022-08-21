@@ -29,6 +29,13 @@ VALUES (
         0,
         'https://picsum.photos/536/354'
     );
+INSERT INTO `party` (`id`, `name`, `previous_wincount`, `logo_url`)
+VALUES (
+        NULL,
+        'Matyangra Party',
+        0,
+        'https://picsum.photos/536/355'
+    );
 INSERT INTO `election` (`id`, `name`)
 VALUES (NULL, 'National Election 2022');
 INSERT INTO `election` (`id`, `name`)
